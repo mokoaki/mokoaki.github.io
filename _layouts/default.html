@@ -2,25 +2,31 @@
 <html>
 <head>
   <meta charset="UTF-8">
-   <title>false.object_id | {{ page.title }}</title>
-   <link rel="stylesheet" href="/css/normalize.css" type="text/css" />
-   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-   <link rel="stylesheet" href="/css/site.css" type="text/css" />
+  <title>false.object_id{% if page.title %} | {{page.title}}{% endif %}</title>
+  <link rel="stylesheet" href="/css/normalize.css" type="text/css" />
+  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+  <link rel="stylesheet" href="/css/site.css" type="text/css" />
 </head>
 <body>
-  <h1><a href="/">false.object_id</a></h1>
+  <header>
+    <h1><a href="/">false.object_id</a></h1>
 
-  mokoaki<br>
-  mokoriso@gmail.com
-
-  <hr>
-
-  {{ content }}
+    mokoaki<br>
+    mokoriso@gmail.com
+  </header>
 
   <hr>
 
-  {% for post in site.posts %}
-    <a href="{{ post.url }}">{{ post.date | date: "%Y/%m/%d" }} {{ post.title }}</a><br>
-  {% endfor %}
+  <article>
+    {{ content }}
+  </article>
+
+  <hr>
+
+  <footer>
+    {% for post in site.posts %}
+      <a href="{{ post.url }}">{{ post.date | date: "%Y/%m/%d" }} {{ post.title }}</a><br>
+    {% endfor %}
+  </footer>
 </body>
 </html>

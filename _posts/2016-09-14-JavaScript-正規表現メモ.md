@@ -1,7 +1,6 @@
 ## JavaScript 正規表現メモ
 
 ### Version
-
 Chromeが55の頃の話です
 
 ### 正規表現オブジェクト
@@ -78,45 +77,43 @@ var reg_exp = /[AB]0[12]/;
 
 ### RegExpオブジェクトメソッドとStringの正規表現関係メソッド
 
+#### RegExpオブジェクトのメソッド
 ```js
-// RegExpオブジェクトのメソッド
-/reg_exp/.test("string")
-/reg_exp/.exec("string") // ローカル正規表現時には "string".match(/reg_exp/) と同じ動作をする（ぽい）
-
-//Stringオブジェクトのメソッド
-"string".match(/reg_exp/) // ローカル正規表現時には /reg_exp/.exec("string") と同じ動作をする（ぽい）
-"string".search(/reg_exp/)
-"string".replace(/reg_exp/)
-"string".split(/reg_exp/)
+RegExp.test(String)
+RegExp.exec(String) // ローカル正規表現時には String.match(RegExp) と同じ動作をする（ぽい）
 ```
 
-### RegExp#test(String)
-
-マッチするかどうかが知りたいだけならこれ
-
+#### Stringオブジェクトのメソッド
 ```js
-/moko\d/.test("moko moko2 moko_")
+String.match(RegExp) // ローカル正規表現時には RegExp.exec(String) と同じ動作をする（ぽい）
+String.search(RegExp)
+String.replace(RegExp)
+String.split(RegExp)
+```
+
+#### RegExp#test(String)
+マッチするかどうかが知りたいだけならこれ
+```js
+/moko\d/.test("moko1 moko2 moko3")
 => true
 ```
 
-### RegExp#exec(String)
-
+#### RegExp#exec(String)
 マッチ箇所毎に何か処理を行いたい場合や、マッチ文字列が必要な場合
-
 ```js
-/moko\d/.exec("moko moko2 moko_")
-=> ["moko2", index: 5, input: "moko moko2 moko_"]
+/moko\d/.exec("moko1, moko2, moko3")
+=> ["moko1"]
 
 // キャプチャを使ってみる
-/moko(\d)/.exec("moko moko2 moko_")
-=> ["moko2", "2", index: 5, input: "moko moko2 moko_"]
+/moko(\d)/.exec("moko1, moko2, moko3")
+=> ["moko1", "1"]
 
 // グローバル正規表現の時は色々な情報を取得できる。例えばイテレート出来る
-var reg_exp = /(moko)(\d)/g;
+var RegExp = /(moko)(\d)/g;
 var text   = "moko1 moko2 moko3";
 var match_object;
 
-while ((match_object = reg_exp.exec(text)) !== null) {
+while ((match_object = RegExp.exec(text)) !== null) {
   console.log(match_object);
 }
 => ["moko1", "moko", "1", index: 0, input: "moko1 moko2 moko3"]
@@ -124,10 +121,8 @@ while ((match_object = reg_exp.exec(text)) !== null) {
 => ["moko3", "moko", "3", index: 12, input: "moko1 moko2 moko3"]
 ```
 
-### String#match(RegExp)
-
+#### String#match(RegExp)
 マッチした文字列が要る場合等
-
 ```js
 "moko1 moko2 moko3".match(/moko\d/)
 => ["moko1"]
@@ -160,10 +155,8 @@ while ((match_object = reg_exp.exec(text)) !== null) {
 => ["moko1", "moko2"]
 ```
 
-### String#search(RegExp)
-
+#### String#search(RegExp)
 マッチした文字列の位置を取得したい
-
 ```js
 "moko1 moko2 moko3".search(/moko1/)
 => 0
@@ -177,10 +170,8 @@ while ((match_object = reg_exp.exec(text)) !== null) {
 => 6
 ```
 
-### String#replace(RegExp, String)
-
+#### String#replace(RegExp, String)
 マッチした文字列を置換する
-
 ```js
 "moko1 moko2 moko3".replace(/moko\d/, "hage")
 => "hage moko2 moko3"
@@ -225,10 +216,8 @@ while ((match_object = reg_exp.exec(text)) !== null) {
 => "aaa_bbb_ccc"
 ```
 
-### String#split(RegExp)
-
+#### String#split(RegExp)
 マッチした正規表現にて分割、配列にする
-
 ```js
 "amoko1bmoko2cmoko3d".split(/moko[13]/)
 => ["a", "bmoko2c", "d"]
@@ -239,8 +228,7 @@ while ((match_object = reg_exp.exec(text)) !== null) {
 => ["a", "bmoko2c", "d"]
 ```
 
-### どうでもいいけど
-
+#### どうでもいいけど
 ```js
 String.match(String)
 String.search(String)
@@ -255,5 +243,5 @@ String.replace(new RegExp(String))
 String.split(new RegExp(String))
 
 // としてくれるらしいので、文字列も指定できるらしいよ
-// まぁ暗黙の型変換て奴ですかね、使わないほうがいいね
+// まぁ暗黙の型変換、バグの温床ですね。頼らないようにしましょう
 ```
