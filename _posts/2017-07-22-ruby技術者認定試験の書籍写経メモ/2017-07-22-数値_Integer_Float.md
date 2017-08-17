@@ -244,7 +244,7 @@ Complex(1, 2).imaginary
 #=> 2
 ```
 
-ちなみにIntegerとかでもこのメソッドは動く
+ちなみにIntegerとかでも、ちゃんとこのメソッドは動く
 
 ```ruby
 5.real
@@ -333,7 +333,7 @@ Rational(1, 4).numerator
 => 1
 ```
 
-ちなみにIntegerとかでもこのメソッドは動く
+ちなみにIntegerとかでも、ちゃんとこのメソッドは動く
 
 ```ruby
 5.denominator
