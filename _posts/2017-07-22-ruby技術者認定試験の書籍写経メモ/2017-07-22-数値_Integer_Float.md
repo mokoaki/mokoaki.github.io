@@ -373,3 +373,22 @@ Rational(1, 2) * 4
 ```
 
 ### Encodingクラス
+
+エンコーディング情報を扱うクラス、この情報はStringクラスだけじゃなく、IOクラスでも使ったりする
+
+#### 主なエンコーディング
+
+```ruby
+Encoding.constants
+#=> [..]
+```
+
+| Encoding::UTF-8       | UTF-8                                                                            |
+| Encoding::EUC_JP      | EUC-JP 今どき使ってる人居るの？                                                  |
+| Encoding::ISO_2022_JP | JIS Rubyではダミーらしい                                                         |
+| Encoding::Shift_JIS   | SHIFT_JIS                                                                        |
+| Encoding::Windows_31J | Shift_JISの亜種 CP932とも言う Encoding::CP932 でも参照可能                       |
+| Encoding::ASCII       | US-ASCII Encoding::US_ASCII でも参照可能                                         |
+| Encoding::ASCII_8BIT  | ASCII互換 文字コードを持たないデータ、単なるバイト列として扱いたい場合に利用する |
+
+#### 規定の外部エンコーディング
