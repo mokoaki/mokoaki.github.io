@@ -419,23 +419,60 @@ IO.read(path, 10).encoding
 => #<Encoding:ASCII-8BIT>
 ```
 
-#### foreach メソッド
+#### IO.foreach io#each io#each_lines メソッド
 
 ```ruby
 IO.foreach(path) do |line|
   p line
 end
 
-io.each(path) do |line|
-  p line
+open(path) do |io|
+  io.each do |line|
+    p line
+  end
 end
-=> #<Encoding:ASCII-8BIT>
+```
+
+#### io#readlines メソッド
+
+各行を直接配列で取得
+
+```ruby
+open(path) do |io|
+  io.readlines
+end
+```
+
+#### io#readline io#gets メソッド
+
+メソッド実行の度に1行読み込む
+
+```ruby
+open(path) do |io|
+  io.readline #=> "1行目"
+  io.readline #=> "2行目"
+end
+```
+
+#### io#each_byte メソッド
+
+メソッド実行の度に1行読み込む
+
+```ruby
+open(path) do |io|
+  io.each_byte do |byte|
+    p byte
+  end
+end
 ```
 
 
 
 
-
+| io#each_byte  |             |               |
+| io#getbyte    | io#readbyte |               |
+| io#each_char  |             |               |
+| io#getc       | io#readchar |               |
 
 
 
