@@ -707,17 +707,3 @@ open(path) do |io|
   io.read
 end
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-a
