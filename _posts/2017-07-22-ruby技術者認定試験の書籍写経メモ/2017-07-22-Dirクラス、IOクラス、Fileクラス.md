@@ -392,12 +392,44 @@ end
 - close_write メソッドは書き込み用のIOを閉じるメソッド
 - close_read メソッドは読み込み用のIOを閉じるメソッド
 
+## あぁ、辛い
 
+### IOからの入力
 
+| IO.read       | io#read     |               |
+| IO.foreach    | io#each     | io#each_lines |
+| io#readlines  | 　          | 　            |
+| io#readline   | io#gets     | 　            |
+| io#each_byte  | 　          | 　            |
+| io#getbyte    | io#readbyte | 　            |
+| io#each_char  | 　          | 　            |
+| io#getc       | io#readchar | 　            |
 
+- readメソッドで長さを指定したときのみバイナリ読み込みとなる為、エンコーディングがASCII-8BITとなる
+- それ以外は
+  - IOオブジェクトに内部エンコーディングが指定されているなら外部エンコーディングから内部エンコーディングへ変換される
+  - IOオブジェクトに内部エンコーディングが指定されていないなら外部エンコーディングが内部エンコーディングで使用される
+- IO.read とio#read は共にIOから内容を読み込みます。長さが指定されているならその長さだけ読み込みます
 
+#### read メソッド
 
+```ruby
+IO.read(path, 10).encoding
+=> #<Encoding:ASCII-8BIT>
+```
 
+#### foreach メソッド
+
+```ruby
+IO.foreach(path) do |line|
+  p line
+end
+
+io.each(path) do |line|
+  p line
+end
+=> #<Encoding:ASCII-8BIT>
+```
 
 
 
