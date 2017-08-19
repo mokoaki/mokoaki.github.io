@@ -2,6 +2,10 @@
 
 [Ruby技術者認定試験の書籍写経メモ]({% post_url 2017-07-22-ruby技術者認定試験の書籍写経メモ %})
 
+- この辺りは駆け足で進みます
+- 書籍もおざなりな説明で理解が進まない悔しい
+- 中の人も同じ気持ちなんだとは思う
+
 ## Dirクラス
 
 ディレクトリの移動、作成、ファイル一覧など、ディレクトリを扱うクラス
@@ -209,18 +213,36 @@ File#read 以外にも gets readlines メソッドなどがあります、
 | File.split(path)    | ディレクトリ名とファイル名の配列を取得                    |
 | File.stat(path)     | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
 | File.lstat(path)    | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
-| File.atime(path)    | 最終アクセス時間                                          |
+| File.atime(path)    | 最終アクセス時刻                                          |
 | File.ctime(path)    | 状態が変更された時間                                      |
-| File.mtime(path)    | 最終更新時間                                              |
+| File.mtime(path)    | 最終更新時刻                                              |
 
 | file#path  | ファイルのフルパスを取得                                  |
 | file#stat  | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
 | file#lstat | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
-| file#atime | 最終アクセス時間                                          |
+| file#atime | 最終アクセス時刻                                          |
 | file#ctime | 状態が変更された時間                                      |
-| file#mtime | 最終更新時間                                              |
+| file#mtime | 最終更新時刻                                              |
 
 他にもメソッドはいっぱいある
+
+### ファイルの属性を設定する
+
+| File.chmod(path) | ファイルのパーミッション変更 |
+| File.chown(path) | ファイルの所有者変更         |
+
+| file#chmod | ファイルのパーミッション変更 |
+| file#chown | ファイルの所有者変更         |
+
+他にもメソッドはいっぱいある
+
+### ファイルの最終アクセス時刻、更新時刻を設定する
+
+これはFileのクラスメソッドを使います（おそらく他にもある）
+
+```ruby
+File.utime(Time.now, Time.now, 'README.txt')
+```
 
 ### ファイルをテストする
 
@@ -248,17 +270,127 @@ File#read 以外にも gets readlines メソッドなどがあります、
 
 しかも、他にもメソッドはいっぱいある
 
+### ファイルのパスを絶対パスに展開する
+
+カレントからの相対位置を絶対パスに変換するって事かね？
+
+```ruby
+File.expand_path('README.txt')
+=> 'full_path/README.txt'
+```
+
+### ファイルを削除する
+
+| File.delete(path)|
+| File.dunlink(path)|
+
+### ファイルを切り詰める
+
+fileオブジェクトのインスタンスメソッドにもあるようです
+
+| File.truncate(path, 0) |
+| file#truncate(0)       |
+
+### ファイル名をリネームする
+
+| File.rename('README.txt', 'README.md') |
+
+### ファイルをロックする
+
+| file#flock(File::LOCK_EX) |
+
+ぶっちゃけ、システムに依存してるらしく、「ぐぐれ」だそうです
+
 ## IOクラス
 
-ファイルやプロセスなどの入出力を扱うクラス
+- ファイルやプロセスなどの基本的な入出力を備えたクラス
+- STDIN(標準入力) STDOUT(標準出力) STDERR(標準エラー出力) もこのIOクラスのオブジェクト
+- Fileクラスのスーパークラスでもあります
 
+### IOを開く
 
+- 「ファイルを開くにはKernelモジュールのopenメソッドを使います」
+- 「IO.openメソッドでも同様にファイルを開くことができます」
 
+どれを使えばいいのよ・・そしてIO.openはエラーになるんだけど・・
 
+- モードやエンコーディングを指定したい時は [このあたり](#ファイルを開く時のモード) を参照
 
+```ruby
+path = 'README.txt'
 
+open(path)
+=> #<File:/Users/mokoaki/.../README.md>
 
+Kernel.open(path)
+=> #<File:/Users/mokoaki/.../README.md>
 
+File.open(path)
+=> #<File:/Users/mokoaki/.../README.md>
+
+IO.open(path)
+=> TypeError: no implicit conversion of String into Integer
+```
+
+### IOクラスを使ってコマンドの実行結果を得る
+
+- openメソッドで | に続いてコマンドを指定するとコマンドの出力結果を得ることができる
+- IOオブジェクトが返る
+- IOオブジェクトを読むにはreadメソッド
+- 入力のエンコーディングが設定されていない場合は Encoding.default_external が使用される
+
+```ruby
+io = open('| pwd')
+=> #<IO:fd 16>
+
+io_read = io.read
+=> "/Users/mokoaki\n"
+
+io_read.encoding
+=> #<Encoding:UTF-8>
+```
+
+### IOオブジェクトに書き込む
+
+には、writeメソッドを使う
+
+```ruby
+STDOUT.write('123456789')
+123456789=> 9
+```
+
+### IOオブジェクトを閉じる
+
+```ruby
+io = open('| pwd')
+io.close
+```
+
+ていうか、閉じ忘れ防止の為にブロック使ってね
+
+```ruby
+open('| pwd') do |io|
+  io.read
+end
+```
+
+### パイプを開く
+
+- IO.popenメソッドを使うとコマンドをサブプロセスとして実行し、そのプロセスと入出力のパイプを開く事ができます
+
+お、おう、動かないんですけど・・
+
+```ruby
+IO.popen('grep -i ruby') do |io|
+  io.write('I am a ruby process')
+  io.close_write
+
+  p io.read
+end
+```
+
+- close_write メソッドは書き込み用のIOを閉じるメソッド
+- close_read メソッドは読み込み用のIOを閉じるメソッド
 
 
 
