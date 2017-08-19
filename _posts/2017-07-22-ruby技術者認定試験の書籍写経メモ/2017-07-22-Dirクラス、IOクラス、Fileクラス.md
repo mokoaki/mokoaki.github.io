@@ -522,13 +522,13 @@ end
 
 ### IOへの出力
 
-| write  |
-| puts   |
-| print  |
-| printf |
-| putc   |
-| \<<    |
-| flush  |
+| io#write  |
+| io#puts   |
+| io#print  |
+| io#printf |
+| io#putc   |
+| io#<<     |
+| io#flush  |
 
 
 
