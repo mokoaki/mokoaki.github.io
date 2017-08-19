@@ -527,7 +527,7 @@ end
 | print  |
 | printf |
 | putc   |
-| /<<     |
+| \<<    |
 | flush  |
 
 
