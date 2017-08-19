@@ -421,6 +421,8 @@ IO.read(path, 10).encoding
 
 #### IO.foreach io#each io#each_lines メソッド
 
+1行毎にブロックに渡して評価する
+
 ```ruby
 IO.foreach(path) do |line|
   p line
@@ -456,7 +458,7 @@ end
 
 #### io#each_byte メソッド
 
-メソッド実行の度に1行読み込む
+1バイト毎にブロックに渡して評価する
 
 ```ruby
 open(path) do |io|
@@ -466,13 +468,64 @@ open(path) do |io|
 end
 ```
 
+#### io#getbyte io#readbyte メソッド
+
+メソッド実行の度に1バイト読み込む
+
+```ruby
+open(path) do |io|
+  io.getbyte #=> "1バイト目"
+  io.getbyte #=> "2バイト目"
+end
+```
+
+#### io#each_char メソッド
+
+1文字毎にブロックに渡して評価する
+
+```ruby
+open(path) do |io|
+  io.each_char do |char|
+    p char
+  end
+end
+```
+
+
+#### io#getc io#readchar メソッド
+
+メソッド実行の度に1バイト読み込む
+
+```ruby
+open(path) do |io|
+  io.getc #=> "1文字目"
+  io.getc #=> "2文字目"
+end
+```
+
+### 空ファイルやEOFになった時の振る舞い
+
+上記の読み込みメソッド達は同じような処理内容で名前が違うメソッドがありますが、ファイル末端に達したときや空ファイルだった時の振る舞いが違ったりします
+
+| IO.read      |              | 空ファイルの場合は "" 長さが指定されている場合は nil |
+| IO.readlines |              | 空ファイルの場合は []                                |
+| IO.foreach   |              | ブロックが実行されない                               |
+| io#each      | io#each_byte | EOFであれば何もしない                                |
+| io#getc      | io#gets      | nil                                                  |
+| io#read      |              | 長さが指定されている場合は nil されていない場合は "" |
+| io#readchar  | io#readline  | EOFErrorが発生                                       |
+| io#readlines |              | []                                                   |
+| io#getbyte   |              | nil                                                  |
+| io#readbyte  |              | EOFErrorが発生                                       |
+
+こんなん暗記するのは無理
+
+### IOへの出力
 
 
 
-| io#each_byte  |             |               |
-| io#getbyte    | io#readbyte |               |
-| io#each_char  |             |               |
-| io#getc       | io#readchar |               |
+
+
 
 
 
