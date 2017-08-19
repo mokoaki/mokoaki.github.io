@@ -169,7 +169,7 @@ File.open 時の第2引数はモードを指定できます
 # => "EUC-JPからSHIFT_JISへ変換される文字列" # shift_jisに変換されて書き込まれる
 ```
 
-#### ファイルに書き込む
+### ファイルに書き込む
 
 もう上記しちゃいましたけど File#write でファイルに書き込めます。
 
@@ -179,7 +179,7 @@ File.open 時の第2引数はモードを指定できます
 file.write('書き込みたい内容')
 ```
 
-#### 入出力時のエンコーディング
+### 入出力時のエンコーディング
 
 詳しくは [IO](#エンコーディング) の辺りで説明します
 
@@ -193,24 +193,60 @@ end
 => #<Encoding:UTF-8>
 ```
 
-#### ファイルの内容を読み込む他のメソッド
+### ファイルの内容を読み込む他のメソッド
 
 File#read 以外にも gets readlines メソッドなどがあります、
 [IO](#エンコーディング) の辺りで説明します
 
-#### ファイルの属性を取得する
+### ファイルの属性を取得する
 
+クラスメソッドとインスタンスメソッド、どっちにもあったりする。評価結果は同一
 
+| File.path(path)     | フルパスを取得                                            |
+| File.basename(path) | ファイル名を取得                                          |
+| File.dirname(path)  | ディレクトリ名を取得                                      |
+| File.extname(path)  | 拡張子を取得                                              |
+| File.split(path)    | ディレクトリ名とファイル名の配列を取得                    |
+| File.stat(path)     | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
+| File.lstat(path)    | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
+| File.atime(path)    | 最終アクセス時間                                          |
+| File.ctime(path)    | 状態が変更された時間                                      |
+| File.mtime(path)    | 最終更新時間                                              |
 
+| file#path  | ファイルのフルパスを取得                                  |
+| file#stat  | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
+| file#lstat | ファイルの属性を示す File::Statクラスのオブジェクトを返す |
+| file#atime | 最終アクセス時間                                          |
+| file#ctime | 状態が変更された時間                                      |
+| file#mtime | 最終更新時間                                              |
 
+他にもメソッドはいっぱいある
 
+### ファイルをテストする
 
+- 存在確認、ディレクトリなのかファイルなのかの判定などたくさんのメソッドがあります
+- これらは FileTestモジュールのメソッドと同じものです リファレンスに一度目を通しておくといいでしょう
+- 同じメソッドが別のクラスから使える、と言うのは逆に言うと、今どのクラスのメソッドを使っているのか迷子になりそうだと言うことです
 
+| File.exists?(path)     | パスが存在しているかどうか |
+| File.file?(path)       | ファイルかどうか           |
+| File.directory?(path)  | ディレクトリかどうか       |
+| File.symlink?(path)    | シンボリックリンクかどうか |
+| File.executable?(path) | 実行可能かどうか           |
+| File.readable?(path)   | 読み取り可能かどうか       |
+| File.writable?(path)   | 書き込み可能かどうか       |
+| File.size(path)        | ファイルサイズ             |
 
+| FileTest.exists?(path)     | パスが存在しているかどうか |
+| FileTest.file?(path)       | ファイルかどうか           |
+| FileTest.directory?(path)  | ディレクトリかどうか       |
+| FileTest.symlink?(path)    | シンボリックリンクかどうか |
+| FileTest.executable?(path) | 実行可能かどうか           |
+| FileTest.readable?(path)   | 読み取り可能かどうか       |
+| FileTest.writable?(path)   | 書き込み可能かどうか       |
+| FileTest.size(path)        | ファイルサイズ             |
 
-
-
-
+しかも、他にもメソッドはいっぱいある
 
 ## IOクラス
 
