@@ -259,6 +259,7 @@ File.utime(Time.now, Time.now, 'README.txt')
 | File.writable?(path)   | 書き込み可能かどうか       |
 | File.size(path)        | ファイルサイズ             |
 
+
 | FileTest.exists?(path)     | パスが存在しているかどうか |
 | FileTest.file?(path)       | ファイルかどうか           |
 | FileTest.directory?(path)  | ディレクトリかどうか       |
