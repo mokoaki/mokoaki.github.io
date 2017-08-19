@@ -614,11 +614,99 @@ end
 
 ### IOオブジェクトの状態を調べる
 
+| io#stat    |            |
+| io#closed? |            |
+| io#eof     | io#eof?    |
+| io#lineno  | io#lineno= |
+| io#sync    |            |
 
+#### io#stat メソッド
 
+- IOオブジェクトの状態を返す File::Statオブジェクトを返す
+- ぐぐれ
 
+#### io#closed? メソッド
 
+既に閉じられているかどうか
 
+#### io#eof io#eof? メソッド
+
+IO末端かどうか
+
+#### io#lineno io#lineno= メソッド
+
+- 現在の行番号(getsメソッドが呼び出された回数)
+- 設定もできる
+
+#### io#sync メソッド
+
+- 出力バッファのモードを調べる
+- 戻り値がtrueの場合は出力メソッド実行毎にバッファがフラッシュされる（されてしまう）
+
+### ファイルポインタの移動
+
+IOオブジェクトへのメソッドだが、ファイルに対して行うことになるのではないかと予想
+
+| io#rewind |         |
+| io#pos    | io#pos= |
+| io#seek   |         |
+
+#### io#rewind メソッド
+
+- ファイルポインタを先頭に移動する
+- io#lineno も0にリセットされる
+- 戻り値はファイルポインタの位置、すなわち0
+
+```ruby
+open(path) do |io|
+  io.read
+
+  io.rewind
+
+  # もう一回読み込む
+  io.read
+end
+```
+
+#### io#pos io#pos= メソッド
+
+- ファイルポインタを指定された場所(n文字目)へ移動する
+- 戻り値はファイルポインタの位置
+
+```ruby
+open(path) do |io|
+  io.pos = 10
+
+  io.read
+end
+```
+
+#### io#seek メソッド
+
+- ファイルポインタを第1引数に指定した数だけ、第2引数に指定した位置から移動します
+- 第2引数に指定できる定数は
+  - IO::SEEK_SET ファイルの先頭（省略時のデフォルト）
+  - IO::SEEK_CUR 現在のポインタの位置
+  - IO::SEEK_END ファイルの末端
+- 戻り値は0
+
+```ruby
+open(path) do |io|
+  # 先頭から10文字目
+  io.seek(10)
+
+  # 先頭から10文字目
+  io.seek(10, IO:SEEK_SET)
+
+  # 現在のポイントから10文字目
+  io.seek(10 IO::SEEK_CUR)
+
+  # ファイル末端の10文字前
+  io.seek(-10 IO::SEEK_END)
+
+  io.read
+end
+```
 
 
 
