@@ -393,18 +393,18 @@ end
 - close_write メソッドは書き込み用のIOを閉じるメソッド
 - close_read メソッドは読み込み用のIOを閉じるメソッド
 
-## あぁ、辛い
+### あぁ、辛い
 
 ### IOからの入力
 
 | IO.read       | io#read     |               |
 | IO.foreach    | io#each     | io#each_lines |
-| io#readlines  | 　          | 　            |
-| io#readline   | io#gets     | 　            |
-| io#each_byte  | 　          | 　            |
-| io#getbyte    | io#readbyte | 　            |
-| io#each_char  | 　          | 　            |
-| io#getc       | io#readchar | 　            |
+| io#readlines  |             |               |
+| io#readline   | io#gets     |               |
+| io#each_byte  |             |               |
+| io#getbyte    | io#readbyte |               |
+| io#each_char  |             |               |
+| io#getc       | io#readchar |               |
 
 - readメソッドで長さを指定したときのみバイナリ読み込みとなる為、エンコーディングがASCII-8BITとなる
 - それ以外は
