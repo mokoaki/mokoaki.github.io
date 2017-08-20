@@ -14,8 +14,8 @@
 ```ruby
 class Moko
   def each
-    1.upto(5) do |i|
-      yield(i)
+    1.upto(5) do |index|
+      yield(index)
     end
   end
 end
@@ -47,8 +47,8 @@ class Moko
   include Enumerable
 
   def each
-    1.upto(5) do |i|
-      yield(i)
+    1.upto(5) do |index|
+      yield(index)
     end
   end
 end
@@ -57,6 +57,8 @@ end
 完了です。メソッドを確認してみると**何かいっぱいメソッドが増えてます**よ！ これみんな使えるようになりました
 
 ```ruby
+Moko.new.methods
+# =>
 :all?
 :any?
 :chunk
