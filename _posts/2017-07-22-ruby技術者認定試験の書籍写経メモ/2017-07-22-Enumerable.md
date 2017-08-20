@@ -21,7 +21,7 @@ class Moko
 end
 ```
 
-こいつのeachはブロックに1から5までを引数に評価するだけのつまらないものですが、テスト用なんで許して下さい
+こいつのeachは1から5までを引数にブロック評価するだけのつまらないものですが、テスト用なんで許して下さい
 
 ```ruby
 Moko.new.each { |item| p item }
@@ -40,7 +40,7 @@ Moko.new.map { |item| item }
 => NoMethodError: undefined method 'map'
 ```
 
-### 自作のクラスにeachメソッドだけ自力で実装し、Enumerableモジュールをincludeする
+### eachメソッドだけ自力で実装した自作のクラスに、Enumerableモジュールをincludeする
 
 ```ruby
 class Moko
