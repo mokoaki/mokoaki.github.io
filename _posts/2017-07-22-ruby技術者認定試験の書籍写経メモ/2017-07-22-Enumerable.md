@@ -44,6 +44,12 @@ Moko.map { |item| item }
 => NoMethodError: undefined method 'map'
 ```
 
+```ruby
+Moko.methods
+=> [:each, :new, :allocate, ...]
+# 何か色々ありますけどね、Objectクラス辺りから継承して頂いた、オブジェクトとして生きていく為の基本的なメソッド達が
+```
+
 ### eachメソッドだけ自力で実装した自作のクラスに、Enumerableモジュールをincludeする
 
 ```ruby
@@ -90,7 +96,6 @@ Moko.methods
 :grep
 :grep_v
 :group_by
-:include?
 :inject
 :lazy
 :map
