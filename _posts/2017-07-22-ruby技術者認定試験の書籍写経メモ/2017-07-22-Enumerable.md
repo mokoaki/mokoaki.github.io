@@ -5,7 +5,7 @@
 ### 何に使われているのか、何に使うのか
 
 - ArrayクラスやHashクラスにincludeされているモジュール
-- 多くの有用なメソッドをクラスに追加します。どのくらい追加されるかというと、メソッド一覧が載っていますが、それだけでもびっくりする程です
+- 多くの有用なメソッドをクラスに追加します。どのくらい追加されるかというと、下にメソッド一覧が載せましたが、それだけでもびっくりする程です
 - 全てのメソッドがeachメソッドを元に定義されているため、eachメソッドさえ定義すれば後は勝手に多くのメソッドが使えるようになります
 - これまで無意識に様々なメソッドを使ってきたが、実はEnumerable先生に大変お世話になっていた、という事
 
@@ -13,9 +13,11 @@
 
 ```ruby
 class Moko
-  def each
-    1.upto(5) do |index|
-      yield(index)
+  class << self
+    def each
+      1.upto(5) do |index|
+        yield(index)
+      end
     end
   end
 end
@@ -24,7 +26,7 @@ end
 こいつのeachは1から5までを引数にブロック評価するだけのつまらないものですが、テスト用なんで許して下さい
 
 ```ruby
-Moko.new.each { |item| p item }
+Moko.each { |item| p item }
 1
 2
 3
@@ -36,7 +38,7 @@ Moko.new.each { |item| p item }
 もちろん他のメソッドは実装されてません
 
 ```ruby
-Moko.new.map { |item| item }
+Moko.map { |item| item }
 => NoMethodError: undefined method 'map'
 ```
 
@@ -44,11 +46,13 @@ Moko.new.map { |item| item }
 
 ```ruby
 class Moko
-  include Enumerable
+  class << self
+    include Enumerable
 
-  def each
-    1.upto(5) do |index|
-      yield(index)
+    def each
+      1.upto(5) do |index|
+        yield(index)
+      end
     end
   end
 end
@@ -57,7 +61,7 @@ end
 完了です。メソッドを確認してみると**何かいっぱいメソッドが増えてます**よ！ これみんな使えるようになりました
 
 ```ruby
-Moko.new.methods
+Moko.methods
 # =>
 :all?
 :any?
@@ -126,9 +130,9 @@ Moko.new.methods
 メソッドの評価結果の配列を新しく生成する
 
 ```ruby
-Moko.new.map { |item| item }
+Moko.map { |item| item }
 => [1, 2, 3, 4, 5]
 
-Moko.new.collect { |item| item ** 2 }
+Moko.collect { |item| item ** 2 }
 => [1, 4, 9, 16, 25]
 ```
