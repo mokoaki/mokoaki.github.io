@@ -57,7 +57,61 @@ end
 完了です。メソッドを確認してみると**何かいっぱいメソッドが増えてます**よ！ これみんな使えるようになりました
 
 ```ruby
-[:max, :min, :to_a, :to_h, :include?, :find, :entries, :sort, :sort_by, :grep, :grep_v, :count, :detect, :find_index, :find_all, :select, :reject, :collect, :map, :flat_map, :collect_concat, :inject, :reduce, :partition, :group_by, :first, :all?, :any?, :one?, :none?, :minmax, :min_by, :max_by, :minmax_by, :member?, :each_with_index, :reverse_each, :each_entry, :each_slice, :each_cons, :each_with_object, :zip, :take, :take_while, :drop, :drop_while, :cycle, :chunk, :slice_before, :slice_after, :slice_when, :chunk_while, :sum, :uniq, :lazy]
+:all?
+:any?
+:chunk
+:chunk_while
+:collect
+:collect_concat
+:count
+:cycle
+:detect
+:drop
+:drop_while
+:each_cons
+:each_entry
+:each_slice
+:each_with_index
+:each_with_object
+:entries
+:find
+:find_all
+:find_index
+:first
+:flat_map
+:grep
+:grep_v
+:group_by
+:include?
+:inject
+:lazy
+:map
+:max
+:max_by
+:member?
+:min
+:min_by
+:minmax
+:minmax_by
+:none?
+:one?
+:partition
+:reduce
+:reject
+:reverse_each
+:select
+:slice_after
+:slice_before
+:slice_when
+:sort
+:sort_by
+:sum
+:take
+:take_while
+:to_a
+:to_h
+:uniq
+:zip
 ```
 
 - 大事な事なのでもう一度言います
