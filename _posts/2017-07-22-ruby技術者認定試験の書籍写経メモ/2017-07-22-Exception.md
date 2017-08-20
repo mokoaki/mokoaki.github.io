@@ -29,6 +29,7 @@ begin
 rescue => ex
   p ex
 end
+=> #<MyError: hage-!>
 ```
 
 ```ruby
