@@ -39,6 +39,7 @@ begin
 rescue => ex
   p ex
 end
+#<MyError: hage-!>
 ```
 
 結果は一緒に思えるんだけど、何が違うのか、どれを使うのがナウいのか分からん
