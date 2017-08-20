@@ -41,18 +41,23 @@ rescue => ex
 end
 ```
 
-- new使おうがexception使おうが使いまいが結果は一緒に思えるんだけど、何が違うのか、どれを使うのがナウいのか分からん
-- なんとなくnewでいいかなとは思ってるんだけど
+結果は一緒に思えるんだけど、何が違うのか、どれを使うのがナウいのか分からん
+
+| raise MyError, 'hage-!'           |
+| raise MyError.new('hage-!')       |
+| raise MyError.exception('hage-!') |
+
+なんとなくnewでいいかなーとは思ってるんだけど
 
 ```ruby
 raise MyError
-MyError: MyError
+MyError: hage-!
 
 raise MyError.new
-MyError: MyError
+MyError: hage-!
 
 raise MyError.exception
-MyError: MyError
+MyError: hage-!
 ```
 
 ### 例外オブジェクトに設定されているメッセージの取得
@@ -115,7 +120,6 @@ end
 => ["backtrace 1", "backtrace 2"]
 ```
 
-
 ```ruby
 class MyError < RuntimeError; end
 
@@ -127,19 +131,3 @@ rescue => ex
 end
 => ["backtrace 1", "backtrace 2", "(irb):......."] # 大量の配列
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-a
