@@ -52,13 +52,13 @@ end
 なんとなくnewでいいかなーとは思ってるんだけど
 
 ```ruby
-raise MyError
+raise MyError, 'hage-!'
 MyError: hage-!
 
-raise MyError.new
+raise MyError.new('hage-!')
 MyError: hage-!
 
-raise MyError.exception
+raise MyError.exception('hage-!')
 MyError: hage-!
 ```
 
