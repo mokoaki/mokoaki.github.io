@@ -89,6 +89,8 @@ Moko.new(3) >= Moko.new(6)
 => false
 ```
 
+数値もComparableをインクルードしているので同様な処理が可能である・・まぁ今まで意識せずに使ってきたんだけど
+
 ```ruby
 6 < 3
 => false
