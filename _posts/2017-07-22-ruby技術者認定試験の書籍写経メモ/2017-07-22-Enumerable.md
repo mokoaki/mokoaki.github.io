@@ -70,7 +70,6 @@ end
 
 ```ruby
 Moko.methods
-# =>
 :all?
 :any?
 :chunk
