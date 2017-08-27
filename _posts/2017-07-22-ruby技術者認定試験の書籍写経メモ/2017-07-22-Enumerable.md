@@ -131,7 +131,7 @@ Moko.methods
 - Enumerableモジュールをincludeするだけで
 - いつも使ってるあのメソッドが使えるようになります
 
-### Enumerable#map Enumerable#collect メソッド
+### Enumerable#map Enumerable#collect
 
 メソッドの評価結果の配列を新しく生成する
 
@@ -150,7 +150,7 @@ Moko.collect { |item| item ** 2 }
 => [11, 21, 31, 41, 51]
 ```
 
-### Enumerable#each_with_index メソッド
+### Enumerable#each_with_index
 
 要素と0から始まるインデックスをブロックに渡して評価する
 
@@ -174,7 +174,7 @@ Moko.each_with_index { |item, index| p "#{item} - #{index}" }
 => [10, 20, 30, 40, 50]
 ```
 
-### Enumerable#inject Enumerable#reduce メソッド
+### Enumerable#inject Enumerable#reduce
 
 与えた初期値と要素をブロックで連続評価して最終的な値を返す
 
@@ -217,7 +217,7 @@ end
 => 150
 ```
 
-### Enumerable#each_cons メソッド
+### Enumerable#each_cons
 
 要素を引数の数の長さの配列で1つずつずらしながらブロックで評価します
 
@@ -237,7 +237,7 @@ Moko.each_cons(3) { |items| p items }
 => nil
 ```
 
-### Enumerable#each_slice メソッド
+### Enumerable#each_slice
 
 要素を引数の長さの配列に分けてブロックで評価します
 
@@ -257,7 +257,7 @@ Moko.each_slice(2) { |items| p items }
 => nil
 ```
 
-### Enumerable#each_slice メソッド
+### Enumerable#each_slice
 
 要素を引数の長さの配列に分けてブロックで評価します
 
@@ -281,7 +281,7 @@ Moko.reverse_each { |items| p items }
 => [10, 20, 30, 40, 50]
 ```
 
-### Enumerable#all? メソッド
+### Enumerable#all?
 
 全ての要素が真値であればtrueを返す
 
@@ -307,7 +307,7 @@ Moko.all? { |item| item.even? }
 => true
 ```
 
-### Enumerable#any? メソッド
+### Enumerable#any?
 
 - 要素が1つでも真値であればtrueを返す
 - 真値であると判断された以降の要素は評価されない
@@ -336,7 +336,7 @@ nil.even? はエラーになるはずだが、 10.even? が真値になった時
 => true
 ```
 
-### Enumerable#none? メソッド
+### Enumerable#none?
 
 - 要素が1つでも真値であればfalseを返す
 - 真値であると判断された以降の要素は評価されない
@@ -365,7 +365,7 @@ nil.even? はエラーになるはずだが、 19.even? が偽値になった時
 => false
 ```
 
-### Enumerable#one? メソッド
+### Enumerable#one?
 
 - 要素が1つだけ真値であればtrueを返す
 - 真値が2つ以上あると判断された以降の要素は評価されない
@@ -394,7 +394,7 @@ nil.even? はエラーになるはずだが、20.even? で2つ目の真値にな
 => false
 ```
 
-### Enumerable#member? Enumerable#include? メソッド
+### Enumerable#member? Enumerable#include?
 
 == メソッドで同値と判断された要素が存在する場合trueを返す
 
@@ -408,9 +408,10 @@ Moko.member?(5)
 => false
 ```
 
-### Enumerable#find メソッド
+### Enumerable#find Enumerable#detect
 
-ブロックを評価し最初に真値と評価された要素を返す
+- ブロックを評価し最初に真値と評価された要素を返す
+- 探偵は犯人を見つけだすんです！
 
 ```ruby
 Moko.find do |item|
@@ -422,33 +423,13 @@ end
 nil.even? はエラーになるはずだが、 10.even? で真値になった時点でその後の評価は行われないためエラーにはならない
 
 ```ruby
-[10, nil, 30, 40].find do |item|
+[10, nil, 30, 40].detect do |item|
   item.even?
 end
 => 10
 ```
 
-### Enumerable#find メソッド
-
-ブロックを評価し最初に真値と評価された要素のインデックスを返す
-
-```ruby
-Moko.find_index do |item|
-  item.even?
-end
-=> 1
-```
-
-nil.even? はエラーになるはずだが、 10.even? で真値になった時点でその後の評価は行われないためエラーにはならない
-
-```ruby
-[10, nil, 30, 40].find_index do |item|
-  item.even?
-end
-=> 0
-```
-
-### Enumerable#find_all Enumerable#select メソッド
+### Enumerable#find_all Enumerable#select
 
 ブロックを評価し真値と評価された要素の配列を返す
 
@@ -466,7 +447,7 @@ end
 => [10, 30, 40]
 ```
 
-### Enumerable#reject メソッド
+### Enumerable#reject
 
 ブロックを評価し偽値と評価された要素の配列を返す
 
@@ -484,7 +465,7 @@ end
 => [19]
 ```
 
-### Enumerable#grep メソッド
+### Enumerable#grep
 
 ブロックを評価しパターンマッチする(引数.===(要素)メソッドの結果が真値)要素の配列を返す
 
@@ -498,7 +479,7 @@ Moko.grep(1..3)
 => ["20", "3c", "40"]
 ```
 
-### Enumerable#sort メソッド
+### Enumerable#sort
 
 - 要素を <=> 比較して昇順に並び替えた配列を返す
 - 全ての要素が <=> メソッドに対応している必要がある
@@ -530,7 +511,7 @@ end
 => ["a", "aa", "aaa", "aaaa", "aaaaa"]
 ```
 
-### Enumerable#sort_by メソッド
+### Enumerable#sort_by
 
 - 要素をブロックにて評価した結果を <=> 比較して昇順に並び替えた要素の配列を返す
 - 要素をブロックにて評価した結果全てが <=> メソッドに対応している必要がある
@@ -550,7 +531,7 @@ end
 => [{:id=>10}, {:id=>20}, {:id=>30}, {:id=>40}, {:id=>50}]
 ```
 
-### Enumerable#max Enumerable#min メソッド
+### Enumerable#max Enumerable#min
 
 - 要素を <=> 比較して最大値、最小値を返す
 - 全ての要素が <=> メソッドに対応している必要がある
@@ -581,7 +562,7 @@ end
 => "a"
 ```
 
-### Enumerable#max_by Enumerable#min_by メソッド
+### Enumerable#max_by Enumerable#min_by
 
 - 要素をブロックにて評価した結果を <=> 比較した最大値、最小値の要素を返す
 - 要素をブロックにて評価した結果全てが <=> メソッドに対応している必要がある
@@ -601,7 +582,7 @@ end
 => {:id=>10}
 ```
 
-### Enumerable#count メソッド
+### Enumerable#count
 
 - 要素の数を返す
 
@@ -615,7 +596,7 @@ Moko.count
 => 5
 ```
 
-### Enumerable#first Enumerable#last メソッド
+### Enumerable#first Enumerable#last
 
 - 引数に指定した数値の長さの配列を要素の先頭、末尾から返す
 - 引数を省略すると先頭、末尾の要素を返す
@@ -633,7 +614,7 @@ Moko.first
 => {:id=>30}
 ```
 
-### Enumerable#take メソッド
+### Enumerable#take
 
 - 引数に指定した数値の長さの配列を要素の先頭から返す
 - 引数は省略できない
@@ -649,7 +630,7 @@ Moko.take(3)
 => [{:id=>10}, {:id=>20}, {:id=>30}]
 ```
 
-### Enumerable#drop メソッド
+### Enumerable#drop
 
 - 引数に指定した数値の長さの配列を要素の先頭から取り除いた配列を返す
 - 引数は省略できない
@@ -664,7 +645,7 @@ Moko.drop(3)
 => [{:id=>40}, {:id=>50}]
 ```
 
-### Enumerable#cycle メソッド
+### Enumerable#cycle
 
 - 引数に指定した数値の数だけ先頭にループしてブロックを評価する
 - 引数を省略すると無限ループ
@@ -695,7 +676,7 @@ Moko.cycle(2) { |item| p item }
 #............無限ループ
 ```
 
-### Enumerable#group_by メソッド
+### Enumerable#group_by
 
 要素をブロックにて評価した結果をキーにした、同じキーを持つ要素を配列としたハッシュを返す
 
@@ -713,7 +694,7 @@ end
 => {10=>[{:id=>10}, {:id=>10}], 20=>[{:id=>20}, {:id=>20}], 30=>[{:id=>30}]}
 ```
 
-### Enumerable#zip メソッド
+### Enumerable#zip
 
 - 自分自身と引数の配列から1つずつ取り出して配列を作り、それを要素とした配列を返す
 - 引数は複数与えられる
@@ -729,7 +710,7 @@ Moko.zip(['a', 'b', 'c', 'd', 'e'])
 => [[10, :a, :A], [20, :b, :B], [30, :c, :C], [40, :d, :D], [50, nil, :E]]
 ```
 
-### Enumerable#take_while メソッド
+### Enumerable#take_while
 
 要素をブロックにて評価した結果が偽値になった時点でループを終了し、それまでの要素の配列を返す
 
@@ -752,7 +733,7 @@ end
 => [{:id=>2}, {:id=>4}, {:id=>6}]
 ```
 
-### Enumerable#drop_while メソッド
+### Enumerable#drop_while
 
 要素をブロックにて評価した結果が偽値になった時点でループを終了し、それ以前の要素を取り除いた配列を返す
 
@@ -775,7 +756,7 @@ end
 => [{:id=>2}, {:id=>4}, {:id=>6}]
 ```
 
-### Enumerable#lazy メソッド
+### Enumerable#lazy
 
 - 他のメソッド（主に配列を返す系？）が遅延評価をするように再定義される
 - 遅延評価になるとそれぞれのメソッドが配列ではなく Enumerable::lazy を返すようになる
