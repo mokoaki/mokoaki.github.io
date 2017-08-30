@@ -474,7 +474,15 @@ end
 ```ruby
 open(path) do |io|
   io.readline #=> "1行目"
-  io.readline #=> "2行目"
+  io.gets #=> "2行目"
+end
+```
+
+```ruby
+open('| ls') do |io|
+  p io.readline #=> "1行目"
+  p io.gets #=> "2行目"
+  p io.readline #=> "3行目"
 end
 ```
 
