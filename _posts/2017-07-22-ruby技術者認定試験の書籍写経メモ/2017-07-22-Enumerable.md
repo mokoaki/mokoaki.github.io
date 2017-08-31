@@ -257,7 +257,7 @@ Moko.each_slice(2) { |items| p items }
 => nil
 ```
 
-### Enumerable#each_slice
+### Enumerable#reverse_each
 
 要素を引数の長さの配列に分けてブロックで評価します
 
