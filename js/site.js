@@ -5,3 +5,5 @@
     console.log("aaa");
   }, true);
 })();
+
+console.log("bbbb");
