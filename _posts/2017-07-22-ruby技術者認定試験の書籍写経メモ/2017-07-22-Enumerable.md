@@ -150,20 +150,37 @@ Moko.collect { |item| item ** 2 }
 => [11, 21, 31, 41, 51]
 ```
 
-### Enumerable#to_a
+### Enumerable#to_a Enumerable#entries
 
 レシーバの各要素を集めて配列で返す
 
 ```ruby
 Moko.to_a
 => [1, 2, 3, 4, 5]
+
+Moko.entries
+=> [1, 2, 3, 4, 5]
 ```
 
-ちなみに Array#to_a はselfを返す
+ちなみに Array#to_a はselfを返す Array#entries は新たな配列を返す
 
 ```ruby
-[1, 2, 3, 4, 5].to_a
+a = [1, 2, 3, 4, 5]
+
+a.object_id
+=> 70287686268180
+
+a.to_a
 => [1, 2, 3, 4, 5]
+
+a.entries
+=> [1, 2, 3, 4, 5]
+
+a.to_a.object_id
+=> 70287686268180
+
+a.entries.object_id
+=> 70287686231180
 ```
 
 ### Enumerable#each_with_index
