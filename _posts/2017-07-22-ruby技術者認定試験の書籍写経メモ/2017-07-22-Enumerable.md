@@ -150,6 +150,22 @@ Moko.collect { |item| item ** 2 }
 => [11, 21, 31, 41, 51]
 ```
 
+### Enumerable#to_a
+
+レシーバの各要素を集めて配列で返す
+
+```ruby
+Moko.to_a
+=> [1, 2, 3, 4, 5]
+```
+
+ちなみに Array#to_a はselfを返す
+
+```ruby
+[1, 2, 3, 4, 5].to_a
+=> [1, 2, 3, 4, 5]
+```
+
 ### Enumerable#each_with_index
 
 要素と0から始まるインデックスをブロックに渡して評価する
