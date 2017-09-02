@@ -8,7 +8,7 @@ $ ->
     sayu = event.clientX / $window.width()  * -6 + 3
     joge = event.clientY / $window.height() * -6 + 3
 
-    $("html").css
+    $("body").css
       "body" : "#{joge}px #{-sayu}px #{-joge}px #{sayu}px"
 
     return true
