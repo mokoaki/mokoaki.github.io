@@ -2,7 +2,7 @@
 ---
 
 $window = $(window)
-$body   = $(body)
+$body   = $("body")
 
 document.addEventListener "mousemove", (event) ->
   sayu = event.clientX / $window.width()  * -6 + 3
