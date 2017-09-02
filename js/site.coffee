@@ -1,3 +1,6 @@
+---
+---
+
 $window = $(window)
 
 document.addEventListener "mousemove", (event) ->
