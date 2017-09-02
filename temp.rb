@@ -1,3 +1,2 @@
-Module A
-  B = 'taint'
+module AA
 end
