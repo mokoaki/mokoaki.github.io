@@ -9,7 +9,7 @@ $ ->
     joge = event.clientY / $window.height() * -6 + 3
 
     $("body").css
-      "body" : "#{joge}px #{-sayu}px #{-joge}px #{sayu}px"
+      "margin" : "#{joge}px #{-sayu}px #{-joge}px #{sayu}px"
 
     return true
 
