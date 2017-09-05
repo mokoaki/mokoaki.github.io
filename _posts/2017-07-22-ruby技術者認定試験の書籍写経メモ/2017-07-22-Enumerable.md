@@ -290,6 +290,25 @@ Moko.each_slice(2) { |items| p items }
 => nil
 ```
 
+### Enumerable#each_with_object
+
+初期値に与えたオブジェクトに繰り返して操作を行う
+
+```ruby
+[{a: 1, b: 2}, {a: 3, b: 4}, {a: 1, b: 6}].each_with_object({}) do |item, result|
+  result[item[:a]] ||= []
+  result[item[:a]] << item[:b]
+end
+=> {1=>[2, 6], 3=>[4]}
+```
+
+```ruby
+[:size, :object_id, :length].each_with_object([]) do |item, result|
+  result << result.send(item)
+end
+=> [0, 70312923283320, 2]
+```
+
 ### Enumerable#reverse_each
 
 要素を引数の長さの配列に分けてブロックで評価します
