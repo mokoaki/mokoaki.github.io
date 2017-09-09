@@ -7,18 +7,18 @@ $body   = $("body")
 window_width  = null
 window_height = null
 
-resize = ->
+window_resize = ->
   window_width  = $window.width()
   window_height = $window.height()
 
   return true
 
 window.addEventListener "resize", (event) ->
-  resize()
+  window_resize()
 
   return true
 
-resize()
+window_resize()
 
 document.addEventListener "mousemove", (event) ->
   sayu = event.clientX / window_width  * -6 + 3
