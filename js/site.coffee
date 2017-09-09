@@ -13,12 +13,12 @@ resize = ->
 
   return true
 
-resize()
-
 window.addEventListener "resize", (event) ->
   resize()
 
   return true
+
+resize()
 
 document.addEventListener "mousemove", (event) ->
   sayu = event.clientX / window_width  * -6 + 3
