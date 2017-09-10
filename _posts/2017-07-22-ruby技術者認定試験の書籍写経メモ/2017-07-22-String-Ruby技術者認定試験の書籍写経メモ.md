@@ -855,7 +855,7 @@ a.force_encoding('UTF-8')
 
 #### match メソッド
 
-指定された正規表現によるマッチングを行い、[MatchDataオブジェクト]({% post_url 2017-07-22-Regexp %}#MatchDataオブジェクト)を返す
+指定された正規表現によるマッチングを行い、[MatchDataオブジェクト]({% post_url 2017-07-22-Regexp-Ruby技術者認定試験の書籍写経メモ %}#MatchDataオブジェクト)を返す
 
 ```ruby
 'abc1abc2abc'.match(/[a-c]/)
