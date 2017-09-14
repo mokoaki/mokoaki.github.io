@@ -569,3 +569,89 @@ t[:hage]
 ```
 
 ### threadライブラリ
+
+- 組み込みクラス Thread 単体ではあまり考慮されていない排他処理、同期処理を実現するクラスを提供する
+- threadライブラリをrequireするとThreadの拡張、ConditionVariable, Queue, SizedQueueのクラスが定義されるようになる
+- Ruby1.8まではMutexクラスも同様だったが、Ruby1.9から組み込みクラスになった
+- この書籍ではMutexが説明されている。それ以外はぐぐれ
+
+#### Thread.exclusive
+
+- が追加される
+- 排他制御を行うメソッドであり、Thread.exclusiveメソッドのブロックを実行している間、他のスレッドへの切り替え処理を行わないようにする
+- ・・・と思ったら **Thread.exclusive is deprecated, use Thread::Mutex** らしい。 Mutexは後述
+
+通常のスレッド
+
+```ruby
+t1 = Thread.new do
+  5.times do 
+    sleep 0.1
+    p 't1' 
+  end
+end
+
+t2 = Thread.new do
+  5.times do 
+    sleep 0.1
+    p 't2' 
+  end
+end
+
+t1.join
+t2.join
+
+p 'end'
+
+#=> "t1"
+#=> "t2"
+#=> "t1"
+#=> "t2"
+#=> "t2"
+#=> "t1"
+#=> "t2"
+#=> "t1"
+#=> "t1"
+#=> "t2"
+#=> "end"
+```
+
+Thread.exclusive 使用版
+
+```ruby
+require 'thread'
+
+t1 = Thread.new do
+  Thread.exclusive do
+    5.times do 
+      sleep 0.1
+      p 't1' 
+    end
+  end
+end
+
+t2 = Thread.new do
+  Thread.exclusive do
+    5.times do 
+      sleep 0.1
+      p 't2' 
+    end
+  end
+end
+
+t1.join
+t2.join
+
+p 'end'
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "end"
+```
