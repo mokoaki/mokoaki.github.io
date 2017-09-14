@@ -655,3 +655,128 @@ p 'end'
 #=> "t2"
 #=> "end"
 ```
+
+### Mutex
+
+排他制御を行うミューテックスを作成するクラス
+
+#### ミューテックスって何ぞや
+
+- ミューテックス(Mutual Exclusion)(相互排他)はクリティカルな処理を行う箇所などプログラムの一部に対して、
+- 複数のスレッドが同時に侵入できないようにする排他制御の1つ
+- スレッドは対象の領域に入る前にミューテックスオブジェクトに対してロック操作を行い、
+- 対象領域を処理する権利を得ると同時に他のスレッドが同じミューテックスを獲得できないようにする
+
+私の理解は「プロセス間で共有されるオブジェクト」
+
+```ruby
+require 'thread'
+
+@m = Mutex.new
+
+t1 = Thread.new do
+  @m.lock
+
+  begin
+    5.times do 
+      sleep 0.1
+      p 't1'
+    end
+  ensure
+    @m.unlock # unlockは必ず、必ず！行われるようにする事！
+  end
+end
+
+t2 = Thread.new do
+  @m.lock
+
+  begin
+    5.times do 
+      sleep 0.1
+      p 't2'
+    end
+  ensure
+    @m.unlock # unlockは必ず、必ず！行われるようにする事！
+  end
+end
+
+t1.join
+t2.join
+
+p 'end'
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "end"
+```
+
+#### Mutex.new
+
+生成する
+
+#### Mutex#lock
+
+Mutexオブジェクトをロックする、既にロックされていたならロックが解除されるまで待機する
+
+#### Mutex#try_lock
+
+Mutexオブジェクトをロックする、既にロックされていたならfalseを返し、待機せずに処理を継続する・・ので注意
+
+#### Mutex.locked?
+
+Mutexオブジェクトがロックされているかを返す
+
+#### Mutex.unlock
+
+Mutexオブジェクトのロックを解除する。解除された場合は Thread::Mutex オブジェクトを返し、元々ロックされていなかった場合は ThreadError がraiseする
+
+#### Mutex.synchronize {}
+
+自らをロックし、ブロック終了後に自らのロックを解除する　君を待っていた
+
+```ruby
+require 'thread'
+
+@m = Mutex.new
+
+t1 = Thread.new do
+  @m.synchronize do
+    5.times do 
+      sleep 0.1
+      p 't1'
+    end
+  end
+end
+
+t2 = Thread.new do
+  @m.synchronize do
+    5.times do 
+      sleep 0.1
+      p 't2'
+    end
+  end
+end
+
+t1.join
+t2.join
+
+p 'end'
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t1"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "t2"
+#=> "end"
+```
