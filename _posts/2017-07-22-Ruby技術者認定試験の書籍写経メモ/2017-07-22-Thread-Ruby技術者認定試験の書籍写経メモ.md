@@ -567,3 +567,5 @@ t.keys
 t[:hage]
 => true
 ```
+
+### threadライブラリ
