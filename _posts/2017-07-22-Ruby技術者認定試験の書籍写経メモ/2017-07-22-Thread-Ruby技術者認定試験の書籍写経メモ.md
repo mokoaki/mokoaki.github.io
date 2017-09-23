@@ -148,7 +148,7 @@ t.status
 #### thread#run thread#wakeup
 
 - スレッドを再開するには run wakeupメソッドを使う
-- run メソッドは具に再開する
+- run メソッドをカレンドスレッドに切り替え、再開する
 - wakeup メソッドは実行待ち状態にする
 
 ```ruby
