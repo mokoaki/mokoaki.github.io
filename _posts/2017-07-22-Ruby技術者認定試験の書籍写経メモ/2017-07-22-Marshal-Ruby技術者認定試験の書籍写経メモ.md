@@ -35,7 +35,7 @@ file.close
 => nil
 ```
 
-#### Marshal#loadメソッド
+#### Marshal.loadメソッド
 
 文字列化したデータからRubyのオブジェクトを復元する
 
