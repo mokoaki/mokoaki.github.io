@@ -207,6 +207,25 @@ Moko.each_with_index { |item, index| p "#{item} - #{index}" }
 => [10, 20, 30, 40, 50]
 ```
 
+### Enumerable#partition
+
+ブロックを評価し、評価が真値の配列、偽値の配列を長さ2の配列で返す
+
+```ruby
+(2..2).partition(&:odd?)
+# => [[], [2]]
+```
+
+```ruby
+(2..2).partition(&:even?)
+# => [[2], []]
+```
+
+```ruby
+(2..7).partition(&:odd?)
+# => [[3, 5, 7], [2, 4, 6]]
+```
+
 ### Enumerable#inject Enumerable#reduce
 
 与えた初期値と要素をブロックで連続評価して最終的な値を返す
