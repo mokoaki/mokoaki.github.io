@@ -1,8 +1,8 @@
 ## ruby-build Verup
 
-- homebrewをアップデート
+- Homebrewをアップデート
 
-[2017-09-29-homebrew_verup]({% post_url 2017-09-29-homebrew_verup %})
+[Homebrew_verup]({% post_url 2017-09-29-homebrew_verup %})
 
 - rbenv インストール可能Ver一覧
 
