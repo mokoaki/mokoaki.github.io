@@ -14,7 +14,7 @@ $ rbenv install --list
 
 ```sh
 $ MAKE_OPTS="-j $(sysctl -n hw.ncpu)" CONFIGURE_OPTS="--disable-install-doc" rbenv install 2.3.4 -v
-memo: MAKE_OPTS="-j 4" CONFIGURE_OPTS="--disable-install-doc" rbenv install 2.3.5 -v
+# (memo) MAKE_OPTS="-j 4" CONFIGURE_OPTS="--disable-install-doc" rbenv install 2.3.5 -v
 ```
 
 - インストールされているruby一覧
