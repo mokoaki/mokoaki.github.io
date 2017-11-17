@@ -1,34 +1,34 @@
-## Node.js Verup
+## Node.js verup
 
 - nodebrewをアップデート
 
 [2017-09-29-nodebrew_verup]({% post_url 2017-09-29-nodebrew_verup %})
 
-- node Ver確認
+- node ver確認
 
 ```sh
 $ node -v
 ```
 
-- npm Ver確認
+- npm ver確認
 
 ```sh
 $ npm --version
 ```
 
-- npm Verup
+- npm verup
 
 ```sh
 $ npm update -g npm
 ```
 
-- package.jsonを見てVerupの必要があるかとか確認
+- package.jsonを見てverupの必要があるかとか確認
 
 ```sh
 $ npm outdated
 ```
 
-- package.jsonを見てVerupする
+- package.jsonを見てverupする
 
 update じゃないんだ・・？
 

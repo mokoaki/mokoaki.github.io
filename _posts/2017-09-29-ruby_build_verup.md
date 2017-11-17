@@ -1,10 +1,10 @@
-## ruby-build Verup
+## ruby-build verup
 
 - Homebrewをアップデート
 
 [Homebrew_verup]({% post_url 2017-09-29-homebrew_verup %})
 
-- rbenv インストール可能Ver一覧
+- rbenv インストール可能ver一覧
 
 ```sh
 $ rbenv install --list
@@ -19,17 +19,17 @@ $ MAKE_OPTS="-j $(sysctl -n hw.ncpu)" CONFIGURE_OPTS="--disable-install-doc" rbe
 
 - インストールされているruby一覧
 
-```ruby
+```sh
 $ rbenv versions
 ```
 
-- ruby Ver 確定
+- ruby ver 確定
 
 ```sh
 $ rbenv global 2.2.0
 ```
 
-- ruby Ver 確認
+- ruby ver 確認
 
 ```sh
 $ ruby -v

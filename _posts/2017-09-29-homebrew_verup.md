@@ -1,4 +1,4 @@
-## Homebrew Verup
+## Homebrew verup
 
 - Homebrew自体をアップデート
 - formula情報をアップデート（情報だけ）
