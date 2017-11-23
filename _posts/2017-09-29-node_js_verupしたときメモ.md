@@ -2,7 +2,7 @@
 
 - nodebrewをアップデート
 
-[2017-09-29-nodebrew_verup]({% post_url 2017-09-29-nodebrew_verup %})
+[2017-09-29-nodebrew_verupしたときメモ]({% post_url 2017-09-29-nodebrew_verupしたときメモ %})
 
 - node ver確認
 

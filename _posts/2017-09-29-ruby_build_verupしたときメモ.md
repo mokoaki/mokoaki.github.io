@@ -2,7 +2,7 @@
 
 - Homebrewをアップデート
 
-[Homebrew_verup]({% post_url 2017-09-29-homebrew_verup %})
+[Homebrew_verupしたときメモ]({% post_url 2017-09-29-homebrew_verupしたときメモ %})
 
 - RBenv, ruby-buildをアップデート
 

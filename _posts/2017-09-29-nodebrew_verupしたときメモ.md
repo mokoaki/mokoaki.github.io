@@ -2,7 +2,7 @@
 
 - homebrewをアップデート
 
-[2017-09-29-homebrew_verup]({% post_url 2017-09-29-homebrew_verup %})
+[2017-09-29-homebrew_verupしたときメモ]({% post_url 2017-09-29-homebrew_verupしたときメモ %})
 
 - node ver確認
 
