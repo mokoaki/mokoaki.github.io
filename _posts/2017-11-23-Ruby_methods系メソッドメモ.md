@@ -33,10 +33,10 @@
 - singleton_methods
   - 引数(true \|\| 省略)
     - レシーバのシングルトンクラスのメソッド (public \|\| protected) を返す
-    - レシーバのシングルトンクラスのスーパークラスにあるメソッドも含める
+    - レシーバのシングルトンクラスのancestorsにあるメソッドも含める
     - private_singleton_methods のようなメソッドは定義されていないので singleton_class.private_methods(false) な感じで取得する
   - 引数(false)
-    - レシーバのシングルトンクラスのメソッドを返す
+    - レシーバのシングルトンクラスのメソッドのみを返す
     - methods(false) と同じ動作になる
 
 #### レシーバのクラスのメソッド(いわゆるインスタンスメソッド)が欲しいなら
@@ -46,9 +46,9 @@
 - methods
   - 引数(true \|\| 省略)
     - レシーバのクラスのメソッド (public_methods + protected_methods) を返す
-    - レシーバのクラスのスーパークラスにあるメソッドも含める
+    - レシーバのクラスのancestorsにあるメソッドも含める
   - 引数(false)
-    - レシーバのシングルトンクラスのメソッドを返す
+    - レシーバのシングルトンクラスのメソッドのみを返す
     - singleton_methods(false) と同じ動作になる
 
 三兄弟
@@ -56,19 +56,19 @@
 - protected_methods
   - レシーバのクラスのprotectedなメソッドを返す
     - 引数が(true \|\| 省略)
-      - レシーバのクラスのスーパークラスにあるメソッドも含める
+      - レシーバのクラスのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのクラスのメソッドのみを返す
 - private_methods
   - レシーバのクラスのprivateなメソッドを返す
     - 引数が(true \|\| 省略)
-      - レシーバのクラスのスーパークラスにあるメソッドも含める
+      - レシーバのクラスのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのクラスのメソッドのみを返す
 - public_methods
   - レシーバのクラスのpublicなメソッドを返す
     - 引数が(true \|\| 省略)
-      - レシーバのクラスのスーパークラスにあるメソッドも含める
+      - レシーバのクラスのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのクラスのメソッドのみを返す
 
@@ -87,7 +87,7 @@
 - instance_methods
   - レシーバのメソッド (public_methods + protected_methods) を返す
     - 引数(true \|\| 省略)
-      - レシーバのスーパークラスにあるメソッドも含める
+      - レシーバのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのメソッドのみを返す
 
@@ -96,18 +96,18 @@
 - public_instance_methods
   - レシーバのpublicなメソッドを返す
     - 引数が(true \|\| 省略)
-      - レシーバのスーパークラスにあるメソッドも含める
+      - レシーバのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのメソッドのみを返す
 - protected_instance_methods
   - レシーバのprotectedなメソッドを返す
     - 引数が(true \|\| 省略)
-      - レシーバのスーパークラスにあるメソッドも含める
+      - レシーバのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのメソッドのみを返す
 - private_instance_methods
   - レシーバのprivateなメソッドを返す
     - 引数が(true \|\| 省略)
-      - レシーバのスーパークラスにあるメソッドも含める
+      - レシーバのancestorsにあるメソッドも含める
     - 引数が(false)
       - レシーバのメソッドのみを返す
