@@ -15,14 +15,13 @@ $ rbenv install --list
 - Suggested build environment
 
 ```sh
-# brew install openssl libyaml libffi
+$ brew install openssl libyaml libffi
 ```
 
 - ruby install
 
 ```sh
-$ CONFIGURE_OPTS="--disable-install-doc" rbenv install 2.4.2 -v
-## rbenv install 2.4.2 -v
+$ rbenv install 2.4.2 -v
 ```
 
 - インストールされているruby一覧
